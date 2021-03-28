@@ -1,0 +1,23 @@
+<div class="row mt-5">
+  <div class="col">
+    <div class="custom-file">
+      <input type="file" accept="image/*" class="custom-file-input" id="customFile" (change)="handleFileInput($any($event.target).files)" [disabled]="working">
+      <label class="custom-file-label" for="customFile">{{ uploadFileLabel }}</label>
+    </div>
+  </div>
+  <div class="col-auto pl-sm-0">
+    <button type="button" class="btn btn-outline-primary" ngbTooltip="Upload" (click)="upload()" [disabled]="working">Upload</button>
+  </div>
+</div>
+<div class="row mt-3" *ngIf="working">
+  <div class="col">
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploadProgress + '%' }" [attr.aria-valuenow]="uploadProgress" aria-valuemin="0" aria-valuemax="100">{{ uploadProgress }}%</div>
+    </div>
+  </div>
+</div>
+<div class="row mt-3" *ngIf="uploadUrl?.length">
+  <div class="col">
+    <img [src]="uploadUrl" alt="preview" class="rounded shadow w-100">
+  </div>
+</div>
